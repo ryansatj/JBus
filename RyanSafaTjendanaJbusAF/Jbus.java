@@ -30,12 +30,12 @@ public class Jbus
 
     public static float getDiscountPercentage(int beforeDiscount, int afterDiscount)
     {
-        if(beforeDiscount > afterDiscount)
+        if(beforeDiscount < afterDiscount)
         {
             return 0.0f;
         }
-        
-        return (beforeDiscount - afterDiscount)/beforeDiscount * 100;
+        float diskon = (beforeDiscount - afterDiscount)* 100/beforeDiscount;
+        return diskon;
     }
     
     public static int getDiscountedPrice(int price, float discountPercentage)
@@ -73,6 +73,7 @@ public class Jbus
     {
         int harga = (price * numberOfSeat);
         int total = getAdminFee(harga);
-        return total;
+        int totalsemua = harga + total;
+        return totalsemua;
     }
 }
