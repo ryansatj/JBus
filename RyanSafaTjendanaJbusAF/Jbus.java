@@ -45,16 +45,16 @@ public class Jbus
             return 0;
         }
         
-        float a = price - (price * discountPercentage)/100;
-        int ia = (int) a;
-        return ia;
+        float hargadiskon = price - (price * discountPercentage)/100;
+        int hargaakhir = (int) hargadiskon;
+        return hargaakhir;
     }
     
     public static int getOriginalPrice(int discountedPrice, float discountPercentage)
     {
-        float a = discountedPrice * (100/(100 - discountPercentage));
-        int ia = (int) a;
-        return ia;
+        float original = discountedPrice * (100/(100 - discountPercentage));
+        int original_int = (int) original;
+        return original_int;
     }
     
     public static float getAdminFeePercentage()
@@ -65,14 +65,14 @@ public class Jbus
     public static int getAdminFee(int price)
     {
         float fee = getAdminFeePercentage();
-        float a = price * fee;
-        return (int) a;
+        float akhir = price * fee;
+        return (int) akhir;
     }
     
     public static int getTotalPrice(int price, int numberOfSeat)
     {
-        int a = (price * numberOfSeat);
-        int total = getAdminFee(a);
+        int harga = (price * numberOfSeat);
+        int total = getAdminFee(harga);
         return total;
     }
 }
