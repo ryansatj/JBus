@@ -8,18 +8,23 @@ public class Price
     
     public Price(double price)
     {
-        discount = 0;
-        rebate = 0;
+        this.price = price;
+        this.discount = 0;
+        this.rebate = 0;
     }
     
     public Price(double price, int discount)
     {
-        rebate = 0;
+        this.price = price;
+        this.discount = discount;
+        this.rebate = 0;
     }
     
     public Price(double price, double rebate)
     {
-        discount = 0;
+        this.price = price;
+        this.rebate = rebate;
+        this.discount = 0;
     }
 
 }

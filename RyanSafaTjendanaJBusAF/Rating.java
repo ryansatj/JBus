@@ -7,7 +7,7 @@ public class Rating
     
     public Rating()
     {
-        total = 0;
-        count = 0;
+        this.total = 0;
+        this.count = 0;
     }
 }
