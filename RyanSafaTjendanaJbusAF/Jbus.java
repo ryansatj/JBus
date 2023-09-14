@@ -1,11 +1,11 @@
-package RyanSafaTjendanaJbusAF;
-
+package RyanSafaTjendanaJBusAF;
 
 /**
  * CS 1
  * Ryan Safa Tjendana - 2206826835
  */
-public class Jbus
+
+public class JBus
 {
 
     public static void main(String args[])
@@ -34,6 +34,12 @@ public class Jbus
         {
             return 0.0f;
         }
+        
+        if(beforeDiscount == 0)
+        {
+            return 0.0f;
+        }
+        
         float diskon = (beforeDiscount - afterDiscount)* 100/beforeDiscount;
         return diskon;
     }
