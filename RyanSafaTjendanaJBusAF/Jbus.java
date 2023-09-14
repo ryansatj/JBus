@@ -40,7 +40,7 @@ public class JBus
             return 0.0f;
         }
         
-        float diskon = (beforeDiscount - afterDiscount)* 100/beforeDiscount;
+        float diskon = (beforeDiscount - afterDiscount) * 100/beforeDiscount;
         return diskon;
     }
     
