@@ -2,9 +2,9 @@ package RyanSafaTjendanaJBusAF;
 
 public class Price
 {
-    double price;
-    int discount;
-    double rebate;
+    public double price;
+    public int discount;
+    public double rebate;
     
     public Price(double price)
     {
@@ -25,6 +25,26 @@ public class Price
         this.price = price;
         this.rebate = rebate;
         this.discount = 0;
+    }
+    
+    private double getDiscountedPrice()
+    {
+        if (this.discount >= 100)
+        {
+            return 0.0d;
+        }
+        
+        return this.price - this.price * (this.discount/100);
+    }
+    
+    private double getRebatedPrice()
+    {
+         
+         if(this.rebate > this.price){
+             return 0.0d;
+         }
+         
+         return this.price - this.rebate;
     }
 
 }
