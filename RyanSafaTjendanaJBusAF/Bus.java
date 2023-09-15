@@ -14,5 +14,4 @@ public class Bus
         this.price = price;
         this.capacity = capacity;
     }
-
 }
