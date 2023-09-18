@@ -25,7 +25,7 @@ public class Voucher
     
     public boolean canApply(Price price)
     {
-        if (isUsed() == false && price.price > minimum)
+        if (this.used == false && price.price > minimum)
         {
             return true;
         }
