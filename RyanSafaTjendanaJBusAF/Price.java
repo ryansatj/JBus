@@ -34,7 +34,7 @@ public class Price
             return 0.0d;
         }
         
-        return this.price - this.price * (this.discount/100);
+        return this.price - this.price * ((100 - this.discount)/100);
     }
     
     private double getRebatedPrice()
