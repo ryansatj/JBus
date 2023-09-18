@@ -15,3 +15,4 @@ public class Bus
         this.capacity = capacity;
     }
 }
+

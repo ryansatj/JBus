@@ -5,6 +5,7 @@ package RyanSafaTjendanaJBusAF;
  * Ryan Safa Tjendana - 2206826835
  */
 
+
 public class JBus
 {
 
@@ -24,7 +25,6 @@ public class JBus
         return bus;
     }
     
-    /**
     public static int getBusId()
     {
         return 0;
@@ -94,5 +94,4 @@ public class JBus
         int totalsemua = harga + total;
         return totalsemua;
     }
-    **/
 }
