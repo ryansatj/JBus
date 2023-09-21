@@ -8,7 +8,7 @@ package RyanSafaTjendanaJBusAF;
 
 public class JBus
 {
-
+    /**
     public static void main(String args[])
     {
         Bus testBus = createBus();
@@ -94,4 +94,5 @@ public class JBus
         int totalsemua = harga + total;
         return totalsemua;
     }
+    **/
 }
