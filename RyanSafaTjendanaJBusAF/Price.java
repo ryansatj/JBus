@@ -27,6 +27,11 @@ public class Price
         //this.discount = 0;
     }
     
+    public String toString()
+    {
+        return this.price + ", " + this.rebate;
+    }
+    
     /**
     private double getDiscountedPrice()
     {
