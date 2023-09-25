@@ -6,7 +6,7 @@ public class Invoice extends Serializable
     public int buyerId;
     public int renterId;
     
-    public Invoice(int id, int buyerId, int renterId, String time)
+    protected Invoice(int id, int buyerId, int renterId, String time)
     {
         super(id);
         this.buyerId = buyerId;

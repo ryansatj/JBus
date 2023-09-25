@@ -10,7 +10,7 @@ public class Renter extends Serializable
     {
         super(id);
         this.companyName = companyName;
-        this.address = null;
+        this.address = "";
         this.phoneNumber = 0;
     }
     
@@ -25,14 +25,14 @@ public class Renter extends Serializable
         super(id);
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
-        this.address = null;
+        this.address = "";
     }
     
     public Renter(int id, String companyName, int phoneNumber, String address){
         super(id);
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.address = "";
     }
 
 }
