@@ -1,6 +1,6 @@
 package RyanSafaTjendanaJBusAF;
 
-public class Voucher extends Serializable
+public abstract class Voucher extends Serializable implements FileParser
 {
     public String name;
     private boolean used;

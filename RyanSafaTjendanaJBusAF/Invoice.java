@@ -1,31 +1,33 @@
 package RyanSafaTjendanaJBusAF;
 
+import java.util.*;
+
 public class Invoice extends Serializable
 {
-    public String time;
+    public Calendar time;
     public int buyerId;
     public int renterId;
     public BusRating rating;
     public PaymentStatus status;
     
-    protected Invoice(int id, int buyerId, int renterId, String time)
+    protected Invoice(int id, int buyerId, int renterId)
     {
         super(id);
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.time = time;
         this.rating = rating.NONE;
         this.status = status.WAITING;
+        this.time = time.getInstance();
     }
     
-    public Invoice(int id, Account buyer, Renter renter, String time)
+    public Invoice(int id, Account buyer, Renter renter)
     {
         super(id);
         this.buyerId = buyer.id;
         this.renterId = renter.id;
-        this.time = time;
         this.rating = rating.NONE;
         this.status = status.WAITING;
+        this.time = time.getInstance();
     }
     
     public String toString()

@@ -1,6 +1,6 @@
 package RyanSafaTjendanaJBusAF;
 
-public class Bus extends Serializable
+public abstract class Bus extends Serializable implements FileParser
 {
     public int capacity;
     public Facility facility;

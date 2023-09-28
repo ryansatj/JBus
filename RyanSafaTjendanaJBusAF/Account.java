@@ -1,7 +1,7 @@
 package RyanSafaTjendanaJBusAF;
 
 
-public class Account extends Serializable
+public abstract class Account extends Serializable implements FileParser
 {
     public String email;
     public String name;
@@ -18,4 +18,5 @@ public class Account extends Serializable
     {
         return super.id + ", " + this.email + ", " + this.name + ", " + this.password;
     }
+    
 }
