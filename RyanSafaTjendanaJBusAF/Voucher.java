@@ -1,6 +1,6 @@
 package RyanSafaTjendanaJBusAF;
 
-public abstract class Voucher extends Serializable implements FileParser
+public class Voucher extends Serializable implements FileParser
 {
     public String name;
     private boolean used;
@@ -54,6 +54,13 @@ public abstract class Voucher extends Serializable implements FileParser
         }
         
         return price.price;
+    }
+    
+    public Object write(){
+        return null;
+    }
+    public boolean read(String string){
+        return false;
     }
     
 }

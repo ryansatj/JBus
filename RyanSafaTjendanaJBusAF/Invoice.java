@@ -17,7 +17,7 @@ public class Invoice extends Serializable
         this.renterId = renterId;
         this.rating = rating.NONE;
         this.status = status.WAITING;
-        this.time = time.getInstance();
+        this.time = Calendar.getInstance();
     }
     
     public Invoice(int id, Account buyer, Renter renter)
@@ -27,7 +27,7 @@ public class Invoice extends Serializable
         this.renterId = renter.id;
         this.rating = rating.NONE;
         this.status = status.WAITING;
-        this.time = time.getInstance();
+        this.time = Calendar.getInstance();
     }
     
     public String toString()

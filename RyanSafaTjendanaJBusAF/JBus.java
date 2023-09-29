@@ -1,4 +1,5 @@
 package RyanSafaTjendanaJBusAF;
+import java.util.Calendar;
 
 /**
  * CS 1
@@ -26,6 +27,21 @@ public class JBus
         System.out.println("Above 10000.0");
         System.out.println(Validate.filter(unfilteredArray, 10000, false));
         
+        Bus testBus = createBus();
+        // Payment
+        Payment testPayment = new Payment(1, 1, 1, testBus.id, "S1");
+        System.out.println(testPayment.getDepartureInfo());
+        System.out.println(testPayment.getTime());
+        // Tes Schedule
+        Calendar schedule1 = Calendar.getInstance();
+        testBus.addSchedule(schedule1);
+        Calendar schedule2 = Calendar.getInstance();
+        schedule2.add(Calendar.DAY_OF_MONTH, 3);
+        testBus.addSchedule(schedule2);
+        for(Schedule s: testBus.schedules){
+            testBus.printSchedule(s);
+}
+        
         /** 
         Review testReview = new Review(1, "23 August 2023", "Bad Quality");
         Price testPrice = new Price(100000, 20000);
@@ -51,14 +67,14 @@ public class JBus
         **/
     }
     
-    /**
+   
     public static Bus createBus()
     {
         Price price = new Price(750000, 5);
-        Bus bus = new Bus("Netlab Bus", Facility.LUNCH, price, 25);
+        Bus bus = new Bus(1, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
         return bus;
     }
-    
+    /**
     public static int getBusId()
     {
         return 0;

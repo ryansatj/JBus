@@ -1,6 +1,8 @@
 package RyanSafaTjendanaJBusAF;
+import java.util.ArrayList;
+import java.util.Calendar;
 
-public abstract class Bus extends Serializable implements FileParser
+public class Bus extends Serializable implements FileParser
 {
     public int capacity;
     public Facility facility;
@@ -10,6 +12,8 @@ public abstract class Bus extends Serializable implements FileParser
     public Station departure;
     public Station arrival;
     public BusType busType;
+    ArrayList <Schedule> schedules;
+    
 
     public Bus(int id, String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival)
     {
@@ -22,11 +26,29 @@ public abstract class Bus extends Serializable implements FileParser
         this.departure = departure;
         this.arrival = arrival;
         this.busType = busType;
+        this.schedules = new ArrayList<Schedule>();
     }
     
     public String toString()
     {
         return super.id + ", " + this.name + ", " + this.facility + ", " + this.price + ", " + this.capacity + ", " + this.city + ", " + this.departure + ", " + this.arrival + ", " + this.busType;
+    }
+    
+    public void addSchedule(Calendar calendar)
+    {
+        this.schedules.add(new Schedule(calendar, this.capacity));
+    }
+    
+    public void printSchedule(Schedule schedule)
+    {
+            System.out.println(schedule.seatAvailability);
+    }
+    
+    public Object write(){
+        return null;
+    }
+    public boolean read(String string){
+        return false;
     }
 }
 
