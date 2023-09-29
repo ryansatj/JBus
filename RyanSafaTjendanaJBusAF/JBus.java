@@ -13,7 +13,7 @@ public class JBus
     
     public static void main(String args[])
     {
-        Price[] unfilteredArray = new Price[5];
+        /**Price[] unfilteredArray = new Price[5];
         for(int i = 0; i < unfilteredArray.length; i++){
             int j = 5000;
             unfilteredArray[i] = new Price((i+1)*j);
@@ -26,6 +26,7 @@ public class JBus
         System.out.println(Validate.filter(unfilteredArray, 12000, true));
         System.out.println("Above 10000.0");
         System.out.println(Validate.filter(unfilteredArray, 10000, false));
+        **/
         
         Bus testBus = createBus();
         // Payment

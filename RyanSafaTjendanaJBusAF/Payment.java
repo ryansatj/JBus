@@ -22,14 +22,14 @@ public class Payment extends Invoice
         super(id, buyer, renter);
         this.busId = busId;
         this.departureDate = Calendar.getInstance();
-        this.departureDate.add(Calendar.DATE, +2);
+        this.departureDate.add(Calendar.DATE, 2);
         this.busSeat = busSeat;
     }
     
     public String getDepartureInfo(){
         SimpleDateFormat SDF = new SimpleDateFormat("MMMM dd, yyyy hh:mm:ss");
         String tanggal = SDF.format(this.departureDate.getTime());
-        return super.id +  ", " + super.buyerId + ", " + super.renterId + ", " + this.busId + ", " + this.departureDate + ", " + this.busSeat + ", " + tanggal;
+        return super.id +  ", " + super.buyerId + ", " + super.renterId + ", " + this.busId  + ", " + this.busSeat + ", " + tanggal;
     }
     
     public int getBusId(){
