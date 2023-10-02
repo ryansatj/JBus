@@ -1,10 +1,10 @@
 package RyanSafaTjendanaJBusAF;
 
-import java.util.Calendar;
+import java.sql.Timestamp;
 
 public class Invoice extends Serializable
 {
-    public Calendar time;
+    public Timestamp time;
     public int buyerId;
     public int renterId;
     public BusRating rating;
@@ -17,7 +17,7 @@ public class Invoice extends Serializable
         this.renterId = renterId;
         this.rating = rating.NONE;
         this.status = status.WAITING;
-        this.time = Calendar.getInstance();
+        this.time = Timestamp.from(java.time.Instant.now());
     }
     
     public Invoice(int id, Account buyer, Renter renter)
@@ -27,7 +27,7 @@ public class Invoice extends Serializable
         this.renterId = renter.id;
         this.rating = rating.NONE;
         this.status = status.WAITING;
-        this.time = Calendar.getInstance();
+        this.time = Timestamp.from(java.time.Instant.now());
     }
     
     public String toString()
