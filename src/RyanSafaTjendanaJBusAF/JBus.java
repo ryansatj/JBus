@@ -14,7 +14,25 @@ public class JBus
     
     public static void main(String args[])
     {
-        System.out.println("Hello From Intellij");
+        Bus bus1 = createBus();
+        Bus bus2 = createBus();
+        Bus bus3 = createBus();
+        Bus bus4 = createBus();
+        Bus bus5 = createBus();
+        System.out.println(bus1);
+        System.out.println(bus2);
+        System.out.println(bus3);
+        System.out.println(bus4);
+        System.out.println(bus5);
+
+        Integer[] numbers = {10, 20, 30, 40, 50};
+        int valueToCheck = 30;
+        boolean result = Algorithm.exists(numbers, valueToCheck);
+        if (result) {
+            System.out.println(valueToCheck + " terdapat dalam array.");
+        } else {
+            System.out.println(valueToCheck + " tidak terdapat dalam array.");
+        }
 
         /** Bus b = createBus();
         // Payment
@@ -101,14 +119,18 @@ public class JBus
         System.out.println(testBus.capacity);
         **/
     }
-    
-   
-    public static Bus createBus()
+
+    public static Bus createBus() {
+        Price price = new Price(750000, 5);
+        Bus bus = new Bus(0, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
+        return bus;
+    }
+    /**public static Bus createBus()
     {
         Price price = new Price(750000, 5);
         Bus bus = new Bus(1, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
         return bus;
-    }
+    }**/
     /**
     public static int getBusId()
     {

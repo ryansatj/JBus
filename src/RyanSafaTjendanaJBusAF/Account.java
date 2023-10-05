@@ -8,7 +8,7 @@ public class Account extends Serializable implements FileParser
     public String password;
     
     public Account (int id, String name, String email, String password){
-        super(id);
+        super();
         this.email = email;
         this.name = name;
         this.password = password;
