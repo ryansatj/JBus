@@ -1,7 +1,8 @@
 package RyanSafaTjendanaJBusAF;
 import java.util.Calendar;
 import java.sql.Timestamp;
-
+import java.util.List;
+import java.util.Arrays;
 /**
  * CS 1
  * Ryan Safa Tjendana - 2206826835
@@ -14,7 +15,56 @@ public class JBus
     
     public static void main(String args[])
     {
-        Bus bus1 = createBus();
+
+        Integer[] numbers = {18, 10, 22, 43, 18, 67, 12, 11, 88, 22, 18};
+        System.out.println("Number "+Arrays.toString(numbers));
+
+        // Tes Algorithm
+        System.out.print("1. ");
+        testCount(numbers);
+        System.out.print("2. ");
+        testFind(numbers);
+        System.out.print("3. ");
+        testExist(numbers);
+        System.out.println("4. Filtering");
+        testCollect(numbers);
+    }
+    private static void testExist(Integer[] t) {
+        int valueToCheck = 67;
+        boolean result3 = Algorithm.exists(t, valueToCheck);
+        if (result3) {
+            System.out.println(valueToCheck + " exist in the array.");
+        } else {
+            System.out.println(valueToCheck + " doesn't exists in the array.");
+        }
+    }
+    public static void testCount(Integer[] t) {
+        int valueToCount = 18;
+        int result = Algorithm.count(t, valueToCount);
+        System.out.println("Number " + valueToCount + " appears " + result + " times");
+    }
+    public static void testFind(Integer[] t) {
+        Integer valueToFind = 69;
+        Integer result2 = Algorithm.find(t, valueToFind);
+        System.out.print("Finding " + valueToFind + " inside the array : ");
+        if (result2 != null) {
+            System.out.println("Found!" + result2);
+        } else {
+            System.out.println("Not Found");
+        }
+    }
+    private static void testCollect(Integer[] t) {
+        Predicate<Integer> below = (val)->val<=22;
+        Predicate<Integer> above = (val)->val>43;
+
+        List<Integer> integerBelow = Algorithm.collect(t, below);
+        List<Integer> integerAbove = Algorithm.collect(t, above);
+
+        System.out.println("Below 22");
+        System.out.println(integerBelow);
+        System.out.println("Above 43");
+        System.out.println(integerAbove);
+        /*Bus bus1 = createBus();
         Bus bus2 = createBus();
         Bus bus3 = createBus();
         Bus bus4 = createBus();
@@ -32,7 +82,7 @@ public class JBus
             System.out.println(valueToCheck + " terdapat dalam array.");
         } else {
             System.out.println(valueToCheck + " tidak terdapat dalam array.");
-        }
+        }*/
 
         /** Bus b = createBus();
         // Payment
