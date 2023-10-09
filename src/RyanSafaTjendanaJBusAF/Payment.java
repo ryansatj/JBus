@@ -1,8 +1,10 @@
 package RyanSafaTjendanaJBusAF;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
+import java.util.List;
 public class Payment extends Invoice
 {
     private int busId;
@@ -40,7 +42,7 @@ public class Payment extends Invoice
         return tanggal;
     }
     
-    public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus)
+    /*public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus)
     {
         for(Schedule jadwal : bus.schedules)
         {
@@ -50,7 +52,7 @@ public class Payment extends Invoice
             }
         }
         return false;
-    }
+    }*/
     
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus)
     {
@@ -65,4 +67,39 @@ public class Payment extends Invoice
         return false;
     }
 
+    public static Schedule availableSchedule(Timestamp date, String seat, Bus bus)
+    {
+        for(Schedule schedule : bus.schedules) {
+            if (schedule.departureSchedule.equals(date) && schedule.isSeatAvailable(seat))
+                return schedule;
+        }
+        return null;
+    }
+    public static Schedule availableSchedule(Timestamp date, List<String> list, Bus bus)
+    {
+        int c = 0;
+        for(Schedule schedule : bus.schedules) {
+            for (int i = 0; i < list.size(); i++) {
+                if (schedule.departureSchedule.equals(date) && schedule.isSeatAvailable(list.get(i)))
+                    c++;
+            }
+            if(c == list.size())
+            {
+                return schedule;
+            }
+        }
+        return null;
+    }
+
+    public static boolean makeBooking(Timestamp date, List<String> list, Bus bus) {
+        for (Schedule schedule : bus.schedules) {
+            if (schedule.departureSchedule.equals(date)) {
+                for (int i = 0; i < list.size(); i++) {
+                    schedule.bookSeat(list.get(i));
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }

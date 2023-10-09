@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Schedule
 {
@@ -28,7 +29,7 @@ public class Schedule
     
     public boolean isSeatAvailable(String seat)
     {
-        if(this.seatAvailability.get(seat) == true)
+        if(this.seatAvailability.get(seat))
         {
             return true;
         }
@@ -36,10 +37,46 @@ public class Schedule
             return false;
         }
     }
+
+    public boolean isSeatAvailable(List<String> list)
+    {
+        int s = 0;
+        int tempsum = 0;
+        while(s < list.size()) {
+            if (this.seatAvailability.get(list.get(s))) {
+                tempsum++;
+            }
+            s++;
+        }
+        if (tempsum == list.size())
+        {
+            return true;
+        }
+        return false;
+    }
+
+
     
     public void bookSeat (String seat)
     {
         this.seatAvailability.put(seat, false);
+    }
+
+    public void bookSeat (List<String> list)
+    {
+        for(int i = 0; i < list.size(); i++)
+        {
+            this.seatAvailability.put(list.get(i), false);
+        }
+    }
+
+    public String toString ()
+    {
+        int availableSeat = Algorithm.count(this.seatAvailability.values().iterator(), true);
+        int temptotal = Algorithm.count(this.seatAvailability.values().iterator(), false);
+        int total = availableSeat + temptotal;
+        SimpleDateFormat formatTanggal = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.Ms");
+        return "Schedule: " + formatTanggal.format(this.departureSchedule.getTime()) + "\n" + "Occupied: " + availableSeat + "/" + total;
     }
     
     public void printSchedule() 

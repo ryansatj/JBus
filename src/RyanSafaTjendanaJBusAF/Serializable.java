@@ -14,9 +14,9 @@ public class Serializable
             mapCounter = new HashMap<>();
         } else {
             int count = mapCounter.getOrDefault(this.getClass(), 0);
-            mapCounter.put(this.getClass(), count + 1);
             this.id = count;
         }
+        mapCounter.put(this.getClass(), this.id + 1);
     }
 
     public static <T> Integer setLastAssignedId (Class<T> obj, int set)
