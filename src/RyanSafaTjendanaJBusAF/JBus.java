@@ -2,8 +2,15 @@ package RyanSafaTjendanaJBusAF;
 import java.util.Calendar;
 import java.sql.Timestamp;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * CS 1
  * Ryan Safa Tjendana - 2206826835
@@ -16,7 +23,21 @@ public class JBus
     
     public static void main(String args[])
     {
-        Bus b = createBus();
+
+        String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\station.json";
+        Gson gson = new Gson();
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath));
+            List<Station> stationjson = gson.fromJson(bufferedReader, new TypeToken<List<Station>>() {}.getType());
+            stationjson.forEach(e -> System.out.println(e.toString()));
+            System.out.println();
+            bufferedReader.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        /*Bus b = createBus();
         List<Timestamp> listOfSchedules = new ArrayList<>();
         listOfSchedules.add(Timestamp.valueOf("2023-7-18 15:00:00"));
         listOfSchedules.add(Timestamp.valueOf("2023-7-20 12:00:00"));
@@ -54,7 +75,7 @@ public class JBus
         System.out.println(Payment.makeBooking(t3, "AF1", b)? msgSuccess : msgFailed);
         // check if the data changed
         System.out.println("\nUpdated Schedule");
-        Algorithm.paginate(b.schedules, 0, 4, t-> true).forEach(System.out::println);
+        Algorithm.paginate(b.schedules, 0, 4, t-> true).forEach(System.out::println);*/
         /*Integer[] numbers = {18, 10, 22, 43, 18, 67, 12, 11, 88, 22, 18};
         System.out.println("Number "+Arrays.toString(numbers));
 

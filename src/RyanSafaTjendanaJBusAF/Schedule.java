@@ -74,9 +74,8 @@ public class Schedule
     {
         int availableSeat = Algorithm.count(this.seatAvailability.values().iterator(), true);
         int temptotal = Algorithm.count(this.seatAvailability.values().iterator(), false);
-        int total = availableSeat + temptotal;
         SimpleDateFormat formatTanggal = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.Ms");
-        return "Schedule: " + formatTanggal.format(this.departureSchedule.getTime()) + "\n" + "Occupied: " + temptotal + "/" + total;
+        return "Schedule: " + formatTanggal.format(this.departureSchedule.getTime()) + "\n" + "Occupied: " + temptotal + "/" + availableSeat;
     }
     
     public void printSchedule() 
