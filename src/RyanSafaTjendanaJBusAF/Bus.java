@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Timestamp;
 
-public class Bus extends Serializable implements FileParser
+public class Bus extends Serializable
 {
     public int capacity;
     public Facility facility;
@@ -37,13 +37,19 @@ public class Bus extends Serializable implements FileParser
     
     public void addSchedule(Timestamp calendar)
     {
-        this.schedules.add(new Schedule(calendar, this.capacity));
+
+        try{
+            this.schedules.add(new Schedule(calendar, this.capacity));
+        }catch(Exception e)
+        {
+            System.out.println("Error");
+        }
     }
     
-    /**public void printSchedule(Schedule schedule)
+    public void printSchedule(Schedule schedule)
     {
         System.out.println(schedule.seatAvailability);
-    }**/
+    }
     
     public Object write(){
         return null;

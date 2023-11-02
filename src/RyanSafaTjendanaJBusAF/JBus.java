@@ -21,22 +21,19 @@ public class JBus
 {
 
     
-    public static void main(String args[])
-    {
-
-        String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\station.json";
-        Gson gson = new Gson();
+    public static void main(String args[]) {
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath));
-            List<Station> stationjson = gson.fromJson(bufferedReader, new TypeToken<List<Station>>() {}.getType());
-            stationjson.forEach(e -> System.out.println(e.toString()));
-            System.out.println();
-            bufferedReader.close();
+            String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses.json";
+            JsonTable<Bus> busList = new JsonTable<>(Bus.class, filepath);
+            List<Bus> filteredBus =
+                    filterByDeparture(busList, City.JAKARTA, 1, 10);
+            filteredBus.forEach(bus -> System.out.println(bus.toString()));
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+
+
         /*Bus b = createBus();
         List<Timestamp> listOfSchedules = new ArrayList<>();
         listOfSchedules.add(Timestamp.valueOf("2023-7-18 15:00:00"));
@@ -88,6 +85,20 @@ public class JBus
         testExist(numbers);
         System.out.println("4. Filtering");
         testCollect(numbers);*/
+    }
+
+    public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page, int pagesize)
+    {
+        List<Bus> FirstList = buses;
+
+        List<Bus> list = new ArrayList<Bus>();
+        for(Bus bus : FirstList)
+        {
+            if(bus.city.equals(departure)){
+                list.add(bus);
+            }
+        }
+        return Algorithm.paginate(list, page, pagesize, t -> true);
     }
     private static void testExist(Integer[] t) {
         int valueToCheck = 67;
