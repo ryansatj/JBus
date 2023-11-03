@@ -19,20 +19,17 @@ import java.util.Arrays;
 
 public class JBus
 {
-
-    
     public static void main(String args[]) {
-
+        //"C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses.json";
         try {
-            String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses.json";
-            JsonTable<Bus> busList = new JsonTable<>(Bus.class, filepath);
-            List<Bus> filteredBus =
-                    filterByDeparture(busList, City.JAKARTA, 1, 10);
+            String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses_CS.json";
+            JsonTable<Bus> busList = new JsonTable<>(Bus.class,filepath);
+            List<Bus> filteredBus = filterByDeparture(busList,City.DEPOK, 0, 10);
             filteredBus.forEach(bus -> System.out.println(bus.toString()));
-        } catch (Throwable t) {
+        }
+        catch (Throwable t){
             t.printStackTrace();
         }
-
 
         /*Bus b = createBus();
         List<Timestamp> listOfSchedules = new ArrayList<>();
@@ -94,11 +91,51 @@ public class JBus
         List<Bus> list = new ArrayList<Bus>();
         for(Bus bus : FirstList)
         {
-            if(bus.city.equals(departure)){
+            if(bus.departure.city.equals(departure)){
                 list.add(bus);
             }
         }
         return Algorithm.paginate(list, page, pagesize, t -> true);
+    }
+
+    public static List<Bus> filterByPrice(List<Bus> buses, int min, int max)
+    {
+        List<Bus> FirstList = buses;
+
+        List<Bus> list = new ArrayList<Bus>();
+        for(Bus bus : FirstList)
+        {
+            if(bus.price.price >= min && bus.price.price <= max){
+                list.add(bus);
+            }
+        }
+        return list;
+    }
+    public static Bus filterBusId(List<Bus> buses, int id)
+    {
+        List<Bus> FirstList = buses;
+
+        for(Bus bus : FirstList)
+        {
+            if(bus.id == id){
+                return bus;
+            }
+        }
+        return null;
+    }
+
+    public static List<Bus> filterByDepartureAndArrival(List<Bus> buses, City departure, City arrival, int page, int pagesize)
+    {
+        List<Bus> FirstList = buses;
+        List<Bus> list = new ArrayList<Bus>();
+
+        for(Bus bus : FirstList)
+        {
+            if(bus.departure.city.equals(departure) && bus.arrival.city.equals(arrival)){
+                list.add(bus);
+            }
+        }
+        return Algorithm.paginate(list, page, pagesize, t->true);
     }
     private static void testExist(Integer[] t) {
         int valueToCheck = 67;
@@ -135,6 +172,7 @@ public class JBus
         System.out.println(integerBelow);
         System.out.println("Above 43");
         System.out.println(integerAbove);
+
         /*Bus bus1 = createBus();
         Bus bus2 = createBus();
         Bus bus3 = createBus();
@@ -153,9 +191,8 @@ public class JBus
             System.out.println(valueToCheck + " terdapat dalam array.");
         } else {
             System.out.println(valueToCheck + " tidak terdapat dalam array.");
-        }*/
-
-        /** Bus b = createBus();
+        }
+        Bus b = createBus();
         // Payment
         Timestamp schedule1 = Timestamp.valueOf("2023-7-18 15:00:00");
         Timestamp schedule2 = Timestamp.valueOf("2023-7-20 12:00:00");
@@ -184,9 +221,9 @@ public class JBus
         System.out.println(Payment.makeBooking(t3, "AF01", b));
 
         System.out.println("\nUpdated Schedule\n");
-        b.schedules.forEach(Schedule :: printSchedule);**/
+        b.schedules.forEach(Schedule :: printSchedule);
 
-        /**Price[] unfilteredArray = new Price[5];
+        /Price[] unfilteredArray = new Price[5];
         for(int i = 0; i < unfilteredArray.length; i++){
             int j = 5000;
             unfilteredArray[i] = new Price((i+1)*j);
@@ -199,9 +236,8 @@ public class JBus
         System.out.println(Validate.filter(unfilteredArray, 12000, true));
         System.out.println("Above 10000.0");
         System.out.println(Validate.filter(unfilteredArray, 10000, false));
-        **/
         
-        /**Bus testBus = createBus();
+        Bus testBus = createBus();
         // Payment
         Payment testPayment = new Payment(1, 1, 1, testBus.id, "S1");
         System.out.println(testPayment.getDepartureInfo());
@@ -215,8 +251,7 @@ public class JBus
         for(Schedule s: testBus.schedules){
             testBus.printSchedule(s);
         }
-        **/
-        /** 
+
         Review testReview = new Review(1, "23 August 2023", "Bad Quality");
         Price testPrice = new Price(100000, 20000);
         Station testDeparture = new Station(2, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya");
@@ -229,16 +264,13 @@ public class JBus
         System.out.println(testAccount);
         System.out.println(testPrice);
         System.out.println(testRating);
-        **/
-        
-        
-        /**
+
         Bus testBus = createBus();
         System.out.println(testBus.name);
         System.out.println(testBus.facility);
         System.out.println(testBus.price.price);
         System.out.println(testBus.capacity);
-        **/
+        */
     }
 
     public static Bus createBus() {
@@ -246,13 +278,13 @@ public class JBus
         Bus bus = new Bus(0, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
         return bus;
     }
-    /**public static Bus createBus()
+    /*public static Bus createBus()
     {
         Price price = new Price(750000, 5);
         Bus bus = new Bus(1, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
         return bus;
-    }**/
-    /**
+    }
+
     public static int getBusId()
     {
         return 0;
@@ -322,5 +354,5 @@ public class JBus
         int totalsemua = harga + total;
         return totalsemua;
     }
-    **/
+    */
 }

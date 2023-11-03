@@ -37,13 +37,12 @@ public class Bus extends Serializable
     
     public void addSchedule(Timestamp calendar)
     {
-
-        try{
-            this.schedules.add(new Schedule(calendar, this.capacity));
-        }catch(Exception e)
-        {
-            System.out.println("Error");
+        for(Schedule schedule : schedules){
+            if(schedule.departureSchedule == calendar){
+                throw new IllegalArgumentException("Schedule with the same timestamp already exists.");
+            }
         }
+        this.schedules.add(new Schedule(calendar, this.capacity));
     }
     
     public void printSchedule(Schedule schedule)
