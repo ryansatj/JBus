@@ -58,7 +58,7 @@ public class Payment extends Invoice
     {
         for(Schedule jadwal : bus.schedules)
         {
-            if(jadwal.departureSchedule.equals(departureSchedule))
+            if(jadwal.departureSchedule.equals(departureSchedule) && jadwal.isSeatAvailable(seat))
             {
                 jadwal.bookSeat(seat);
                 return true;

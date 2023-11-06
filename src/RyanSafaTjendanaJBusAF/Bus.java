@@ -16,7 +16,7 @@ public class Bus extends Serializable
     ArrayList <Schedule> schedules;
     
 
-    public Bus(int id, String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival)
+    public Bus(String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival)
     {
         super();
         this.name = name;

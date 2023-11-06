@@ -2,67 +2,34 @@ package RyanSafaTjendanaJBusAF;
 
 import java.util.HashMap;
 
-public class Serializable
-{
+public class Serializable {
     public final int id;
-    private static HashMap <Class<?>, Integer> mapCounter;
-
-    protected Serializable()
-    {
-        if (mapCounter == null){
-            this.id = 0;
-            mapCounter = new HashMap<>();
-        } else {
-            int count = mapCounter.getOrDefault(this.getClass(), 0);
-            this.id = count;
-        }
-        mapCounter.put(this.getClass(), this.id + 1);
+    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class <?>, Integer>();
+    protected Serializable(){
+        Integer counter = mapCounter.get(getClass());
+        counter = counter == null ? 0 : counter + 1;
+        mapCounter.put(getClass(), counter);
+        this.id = counter;
     }
 
-    public static <T> Integer setLastAssignedId (Class<T> obj, int set)
-    {
-        mapCounter.replace(obj, set);
-        return mapCounter.get(obj);
+    public static <T> Integer getLastAssignedId(Class<T> getter ){
+        return mapCounter.get(getter);
     }
 
-    public static <T> Integer getLastAssignedId (Class<T> obj)
-    {
-        return mapCounter.get(obj);
-    }
-    public int compareTo(Serializable obj){
-        if(this.id == obj.id)
-        {
-            return 0;
-        }
-        else{
-            return 1;
-        }
-    }
-    public boolean equals (Object obj){
-        if (obj instanceof Serializable) {
-            Serializable temp = (Serializable) obj;
-            if (this.id == temp.id)
-            {
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-        else{
-            return false;
-        }
+    public static <T> Integer setLastAssignedId(Class<T> setter, int number){
+        return mapCounter.put(setter, number);
     }
 
-    public boolean equals (Serializable obj)
-    {
-        if(obj.id == this.id)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
+    public int compareTo(Serializable temp){
+        return ((Integer)this.id).compareTo(temp.id);
+    }
+
+    public boolean equals(Serializable temp){
+        return temp.id == this.id;
+    }
+
+    public boolean equals(Object object){
+        return object instanceof Serializable && ((Serializable) object).id == this.id;
     }
 
 }

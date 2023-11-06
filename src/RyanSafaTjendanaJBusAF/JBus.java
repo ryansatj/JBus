@@ -2,8 +2,10 @@ package RyanSafaTjendanaJBusAF;
 import java.util.Calendar;
 import java.sql.Timestamp;
 import java.util.List;
+import java.lang.Thread;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import com.google.gson.*;
@@ -19,17 +21,28 @@ import java.util.Arrays;
 
 public class JBus
 {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         //"C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses.json";
         try {
-            String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses_CS.json";
-            JsonTable<Bus> busList = new JsonTable<>(Bus.class,filepath);
-            List<Bus> filteredBus = filterByDeparture(busList,City.DEPOK, 0, 10);
-            filteredBus.forEach(bus -> System.out.println(bus.toString()));
+            String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\accountDatabase.json";
+            JsonTable<Account> AccList = new JsonTable<>(Account.class, filepath);
+            Account bush = new Account("Ryan", "ryansafa@gmail.com", "gYaj1akk");
+            AccList.add(bush);
+            JsonTable.writeJson(AccList, filepath);
+            AccList.forEach(System.out::println);
         }
         catch (Throwable t){
             t.printStackTrace();
         }
+
+        Bus bus = createBus();
+        bus.schedules.forEach(Schedule::printSchedule);
+        for(int i =0; i < 10; i++){
+            BookingThread thread = new BookingThread("Thread " + i,bus,
+                    Timestamp.valueOf("2023-07-27 19:00:00"));
+        }
+        Thread.sleep(1000);
+        bus.schedules.forEach(Schedule::printSchedule);
 
         /*Bus b = createBus();
         List<Timestamp> listOfSchedules = new ArrayList<>();
@@ -275,7 +288,9 @@ public class JBus
 
     public static Bus createBus() {
         Price price = new Price(750000, 5);
-        Bus bus = new Bus(0, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
+        Bus bus = new Bus("Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station("Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station("Halter UI", City.JAKARTA, "Universitas Indonesia"));
+        Timestamp timestamp = Timestamp.valueOf("2023-07-27 19:00:00");
+        bus.addSchedule(timestamp);
         return bus;
     }
     /*public static Bus createBus()

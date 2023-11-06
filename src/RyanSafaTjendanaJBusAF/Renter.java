@@ -9,31 +9,23 @@ public class Renter extends Serializable
     private final String REGEX_PHONE = "[0-9]{8,11}$";
     public String address;
     public String companyName;
-    public int phoneNumber;
+    public String phoneNumber;
     
-    public Renter(int id, String companyName)
+    public Renter(String companyName)
     {
         super();
         this.companyName = companyName;
         this.address = "";
-        this.phoneNumber = 0;
+        this.phoneNumber = "";
     }
-    
-    public Renter(int id, String companyName, String address){
-        super();
-        this.companyName = companyName;
-        this.address = address;
-        this.phoneNumber = 0;
-    }
-    
-    public Renter(int id, String companyName, int phoneNumber){
+    public Renter(String companyName, String phoneNumber){
         super();
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
         this.address = "";
     }
     
-    public Renter(int id, String companyName, int phoneNumber, String address){
+    public Renter(String companyName, String phoneNumber, String address){
         super();
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
@@ -43,7 +35,7 @@ public class Renter extends Serializable
     public boolean validate()
     {
         Pattern patternPhone = Pattern.compile(REGEX_PHONE);
-        Matcher matcherPhone = patternPhone.matcher(Integer.toString(this.phoneNumber));
+        Matcher matcherPhone = patternPhone.matcher(this.phoneNumber);
         boolean matchPhoneFound = matcherPhone.find();
 
         Pattern patternName = Pattern.compile(REGEX_NAME);
