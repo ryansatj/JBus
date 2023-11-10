@@ -1,5 +1,7 @@
 package com.RyanSafaTjendanaJBusAF;
 
+import com.RyanSafaTjendanaJBusAF.dbjson.Serializable;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +31,7 @@ public class Renter extends Serializable
         super();
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
-        this.address = "";
+        this.address = address;
     }
 
     public boolean validate()

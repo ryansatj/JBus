@@ -1,7 +1,7 @@
-package com.RyanSafaTjendanaJBusAF;
+package com.RyanSafaTjendanaJBusAF.dbjson;
 
-/*import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;*/
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 import java.io.*;
 import java.lang.reflect.Array;
@@ -14,7 +14,7 @@ import java.util.Vector;
  * @author Rafie Amandio
  */
 public class JsonTable<T> extends Vector<T> {
-    /*private static final Gson gson = new Gson();
+    private static final Gson gson = new Gson();
     public final String filepath;
 
     @SuppressWarnings("unchecked")
@@ -63,5 +63,5 @@ public class JsonTable<T> extends Vector<T> {
     {
         final JsonReader reader = new JsonReader(new FileReader(filepath));
         return gson.fromJson(reader, clazz);
-    }*/
+    }
 }

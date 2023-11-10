@@ -1,17 +1,12 @@
 package com.RyanSafaTjendanaJBusAF;
-import java.util.Calendar;
 import java.sql.Timestamp;
 import java.util.List;
 import java.lang.Thread;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
 //import com.google.gson.*;
 //import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import com.RyanSafaTjendanaJBusAF.dbjson.JsonDBEngine;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -25,7 +20,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JBus
 {
     public static void main(String args[]) throws InterruptedException {
+        JsonDBEngine.Run(JBus.class);
         SpringApplication.run(JBus.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(()->JsonDBEngine.join()));
+
         //"C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses.json";
         /*try {
             String filepath = "C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\accountDatabase.json";
@@ -58,7 +56,7 @@ public class JBus
         listOfSchedules.forEach(b::addSchedule);
         System.out.println("Page 1");
         Algorithm.paginate(b.schedules, 0, 3, t -> true).forEach(System.out::println);
-        System.out.println("=====================================================");
+        System.out.println("========\=============================================");
         System.out.println("Page 2");
         Algorithm.paginate(b.schedules, 1, 3, t -> true).forEach(System.out::println);
         System.out.println("=====================================================");

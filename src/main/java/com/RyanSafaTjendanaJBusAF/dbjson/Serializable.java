@@ -1,8 +1,8 @@
-package com.RyanSafaTjendanaJBusAF;
+package com.RyanSafaTjendanaJBusAF.dbjson;
 
 import java.util.HashMap;
 
-public class Serializable {
+public class Serializable implements Comparable<Serializable> {
     public final int id;
     private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class <?>, Integer>();
     protected Serializable(){
@@ -31,5 +31,4 @@ public class Serializable {
     public boolean equals(Object object){
         return object instanceof Serializable && ((Serializable) object).id == this.id;
     }
-
 }

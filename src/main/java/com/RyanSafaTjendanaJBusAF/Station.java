@@ -1,5 +1,7 @@
 package com.RyanSafaTjendanaJBusAF;
 
+import com.RyanSafaTjendanaJBusAF.dbjson.Serializable;
+
 public class Station extends Serializable
 {
     public City city;

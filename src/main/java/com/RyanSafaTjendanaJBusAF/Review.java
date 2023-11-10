@@ -1,5 +1,7 @@
 package com.RyanSafaTjendanaJBusAF;
 
+import com.RyanSafaTjendanaJBusAF.dbjson.Serializable;
+
 public class Review extends Serializable
 {
     public String date;

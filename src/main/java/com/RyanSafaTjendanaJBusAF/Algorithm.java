@@ -97,15 +97,11 @@ public class Algorithm {
         return find(it, value);
     }
 
-    public static <T> T find(Iterator<T> iterator, Predicate<T> pred)
-    {
-        if(exists(iterator, pred) == true) {
-            int count = 0;
-            while (iterator.hasNext()) {
-                T temp = iterator.next();
-                if (pred.predicate(temp)) {
-                    return temp;
-                }
+    public static <T> T find(Iterator<T> iterator, Predicate<T> pred){
+        while(iterator.hasNext()){
+            T current  = iterator.next();
+            if(pred.predicate(current)){
+                return current;
             }
         }
         return null;
