@@ -12,7 +12,7 @@ public class Invoice extends Serializable
     public BusRating rating;
     public PaymentStatus status;
     
-    protected Invoice(int id, int buyerId, int renterId)
+    protected Invoice(int buyerId, int renterId)
     {
         super();
         this.buyerId = buyerId;
@@ -22,7 +22,7 @@ public class Invoice extends Serializable
         this.time = Timestamp.from(java.time.Instant.now());
     }
     
-    public Invoice(int id, Account buyer, Renter renter)
+    public Invoice(Account buyer, Renter renter)
     {
         super();
         this.buyerId = buyer.id;

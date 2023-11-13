@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 
 public class Renter extends Serializable
 {
-    private final String REGEX_NAME = "^[A-Z][A-Za-z0-9_]{3,19}$";
-    private final String REGEX_PHONE = "[0-9]{8,11}$";
+    private static final String REGEX_NAME = "^[A-Z][A-Za-z0-9_]{3,19}$";
+    private static final String REGEX_PHONE = "[0-9]{8,11}$";
     public String address;
     public String companyName;
     public String phoneNumber;
