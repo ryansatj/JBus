@@ -104,7 +104,7 @@ public class AccountController implements BasicGetController<Account>
     @PostMapping("/{id}/topUp")
     BaseResponse<Double> topUp(
             @PathVariable int id,
-            @RequestParam Double amount
+            @RequestParam double amount
     ){
        if(Algorithm.<Account>exists(getJsonTable(), t->t.id == id && t.topUp(amount)))
            return new BaseResponse<>(true, "Berhasil TopUp", amount);
