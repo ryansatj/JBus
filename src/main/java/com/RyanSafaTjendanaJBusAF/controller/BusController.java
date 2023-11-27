@@ -3,10 +3,7 @@ package com.RyanSafaTjendanaJBusAF.controller;
 import com.RyanSafaTjendanaJBusAF.*;
 import com.RyanSafaTjendanaJBusAF.dbjson.JsonAutowired;
 import com.RyanSafaTjendanaJBusAF.dbjson.JsonTable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -45,6 +42,7 @@ public class BusController implements BasicGetController<Bus> {
 
         }
         Bus bus = new Bus(name, facilities, new Price(price), capacity, busType, Algorithm.<Station>find(new StationController().getJsonTable(), t->t.id == stationArrivalId), Algorithm.<Station>find(new StationController().getJsonTable(), t->t.id == stationDepartureId));
+        bus.accountId = accountId;
         busTable.add(bus);
         return new BaseResponse<>(true, "Bus Berhasil dibuat", bus);
     }
@@ -62,4 +60,7 @@ public class BusController implements BasicGetController<Bus> {
             return new BaseResponse<>(false, "Schedule gagal dibuat", null);
         }
     }
+    @GetMapping("/getMyBus")
+    public BaseResponse<List<Bus>> getMyBus(@RequestParam int accountId) {
+        return new BaseResponse<>(true, "Berhasil", Algorithm.<Bus>collect(getJsonTable(), b->b.accountId==accountId ));}
 }
