@@ -63,4 +63,14 @@ public class BusController implements BasicGetController<Bus> {
     @GetMapping("/getMyBus")
     public BaseResponse<List<Bus>> getMyBus(@RequestParam int accountId) {
         return new BaseResponse<>(true, "Berhasil", Algorithm.<Bus>collect(getJsonTable(), b->b.accountId==accountId ));}
+
+    @GetMapping("/getAllBus")
+    public BaseResponse<List<Bus>> getAllBus()
+    {return new BaseResponse<>(true, "berhasil", getJsonTable());}
+
+    @GetMapping("/getBusPrice")
+    public BaseResponse<Bus> getBusPrice(@RequestParam int busId){
+        return new BaseResponse<>(true, "", Algorithm.<Bus>find(getJsonTable(), t->t.id == busId));
+    }
+
 }

@@ -41,19 +41,7 @@ public class Payment extends Invoice
         String tanggal = SDF.format(super.time.getTime());
         return tanggal;
     }
-    
-    /*public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus)
-    {
-        for(Schedule jadwal : bus.schedules)
-        {
-            if(jadwal.isSeatAvailable(seat) && jadwal.departureSchedule.equals(departureSchedule))
-            {
-                  return true;   
-            }
-        }
-        return false;
-    }*/
-    
+
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus)
     {
         for(Schedule jadwal : bus.schedules)

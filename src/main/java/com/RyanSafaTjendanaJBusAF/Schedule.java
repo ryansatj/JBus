@@ -74,7 +74,7 @@ public class Schedule
     {
         int availableSeat = Algorithm.count(this.seatAvailability.values().iterator(), true);
         int temptotal = Algorithm.count(this.seatAvailability.values().iterator(), false);
-        SimpleDateFormat formatTanggal = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.Ms");
+        SimpleDateFormat formatTanggal = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Ms");
         return "Schedule: " + formatTanggal.format(this.departureSchedule.getTime()) + "\n" + "Occupied: " + temptotal + "/" + availableSeat;
     }
     
@@ -101,6 +101,14 @@ public class Schedule
             currentSeat++;
         }
         System.out.println("\n");
+    }
+
+    public void toTrue (String seat){
+        if (this.seatAvailability.containsKey(seat)) {
+            this.seatAvailability.put(seat, true);
+        } else {
+            System.out.println("Bangku " + seat + " Tidak tersedia.");
+        }
     }
     
 }

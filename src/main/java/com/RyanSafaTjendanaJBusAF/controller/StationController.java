@@ -51,6 +51,7 @@ public class StationController implements BasicGetController<Station> {
         }
     }
     @GetMapping("/getAll")
-    public List<Station> getAllStation() { return getJsonTable();}
+    public List<Station> getAllStation()
+    { return getJsonTable();}
 
 }
