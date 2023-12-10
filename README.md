@@ -1,6 +1,6 @@
 # JBus
 
-JBus adalah aplikasi berbasis Java yang memungkinkan pengguna untuk melakukan pemesanan bus dan menjadi penyewa bus.
+JBus adalah aplikasi untuk backend berbasis Java yang memungkinkan pengguna untuk melakukan pemesanan bus dan menjadi penyewa bus yang akan mengatur semua alur program dan juga menjadi database server untuk client.
 
 ## Fitur
 
