@@ -1,22 +1,27 @@
-JBus
-JBus adalah suatu aplikasi berbasis java yang dapat melakukan pemesanan Bus dan juga menjadi renter dari suatu Bus.
+# JBus
 
-Features
--Account Management: dapat melakukan register akun personal dan juga dapat melakukan register akun suatu perusahaan yang ingin menjadi Renter Bus.
--Bus Management: Untuk perusahaan/renter dapat melakukan penambahan bus, dan juga mendeskripsikan bus hingga pemberian harga Bus
--Station Management: Tersedia Database untuk stasiun stasiun yang sudah tersedia utuk dikelola.
--Booking and Payment: Dapat membuat booking dan juga dapat membayar bus yang dipesan dengan alur pembayarannya.
--Review System: Untuk sementara Review System belum tersedia nantikan di update selanjutnya.
+JBus adalah aplikasi berbasis Java yang memungkinkan pengguna untuk melakukan pemesanan bus dan menjadi penyewa bus.
 
-Prerequisites
--Java JDK 8 or higher
--Apache Maven
--Client (Android)
+## Fitur
 
-Usage
--Melakukan Register Atau Login jika sudah memiliki akun.
--Melakukan pencarian Bus yang tersedia oleh Renter.
--Melakukan Booking dan pembayaran terhadap Bus.
+- **Manajemen Akun:** Registrasi dan login untuk pengguna perorangan dan perusahaan penyewa bus.
+- **Manajemen Bus:** Penambahan bus, deskripsi, dan penentuan harga oleh perusahaan/penyewa bus.
+- **Manajemen Stasiun:** Database stasiun yang dapat dikelola.
+- **Pemesanan dan Pembayaran:** Proses pemesanan dan pembayaran bus.
+- **Sistem Ulasan:** (Belum Tersedia) - Fungsi ulasan akan ditambahkan dalam pembaruan selanjutnya.
 
-Acknowledgments
-Terima kasih untuk Ryan Safa Tjendana dan Netlab untuk membuat dan mendevelop JBus.
+## Persyaratan
+
+- Java JDK 8 atau versi lebih tinggi.
+- Apache Maven.
+- Klien (Android).
+
+## Penggunaan
+
+1. Registrasi atau login jika sudah memiliki akun.
+2. Telusuri bus yang tersedia oleh penyewa.
+3. Lakukan pemesanan dan pembayaran bus.
+
+## Penghargaan
+
+Terima kasih kepada [Ryan Safa Tjendana](https://github.com/ryansatj) dan Netlab dan juga Bang AF atas pembuatan dan pengembangan JBus. 
