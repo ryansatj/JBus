@@ -5,6 +5,12 @@ import com.RyanSafaTjendanaJBusAF.dbjson.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class ini untuk membuat objek renter yang akan ada dalam Account
+ *
+ * @author Ryan Safa Tjendana
+ * @version 1.0
+ */
 public class Renter extends Serializable
 {
     private static final String REGEX_NAME = "^[A-Z][A-Za-z0-9_]{3,19}$";
@@ -12,7 +18,12 @@ public class Renter extends Serializable
     public String address;
     public String companyName;
     public String phoneNumber;
-    
+
+    /**
+     * Konstruktor untuk objek Renter dengan companyName
+     *
+     * @param companyName nama perusahaan penyewa
+     */
     public Renter(String companyName)
     {
         super();
@@ -20,13 +31,27 @@ public class Renter extends Serializable
         this.address = "";
         this.phoneNumber = "";
     }
+
+    /**
+     * Konstruktor untuk objek Renter dengan companyName dan phoneNumber
+     *
+     * @param companyName nama perusahaan penyewa
+     * @param phoneNumber nomor telepon perusahaan penyewa
+     */
     public Renter(String companyName, String phoneNumber){
         super();
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
         this.address = "";
     }
-    
+
+    /**
+     * Konstruktor untuk objek Renter dengan companyName, phoneNumber, dan address
+     *
+     * @param companyName nama perusahaan penyewa
+     * @param phoneNumber nomor telepon perusahaan penyewa
+     * @param address alamat perusahaan penyewa
+     */
     public Renter(String companyName, String phoneNumber, String address){
         super();
         this.companyName = companyName;
@@ -34,6 +59,11 @@ public class Renter extends Serializable
         this.address = address;
     }
 
+    /**
+     * Validasi data Renter, memeriksa apakah companyName dan phoneNumber memenuhi format yang benar.
+     *
+     * @return true jika valid, false jika tidak valid
+     */
     public boolean validate()
     {
         Pattern patternPhone = Pattern.compile(REGEX_PHONE);
@@ -44,10 +74,7 @@ public class Renter extends Serializable
         Matcher matcherName = patternName.matcher(companyName);
         boolean matchNameFound = matcherName.find();
 
-        if(matchNameFound && matchPhoneFound)
-            return true;
-
-        return false;
+        return matchNameFound && matchPhoneFound;
     }
-
 }
+

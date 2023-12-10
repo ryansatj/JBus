@@ -12,17 +12,26 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 /**
- * CS 1
+ * Class yang akan menjalankan semua Class atau class main dari seluruh package
  * Ryan Safa Tjendana - 2206826835
+ *
+ * @author Ryan Safa Tjendana
+ * @version 1.0
  */
 
 @SpringBootApplication
 public class JBus
 {
+    /**
+     *
+     * @param args
+     * @throws InterruptedException untuk menangkap error
+     */
     public static void main(String args[]) throws InterruptedException {
         JsonDBEngine.Run(JBus.class);
         SpringApplication.run(JBus.class, args);
-        Runtime.getRuntime().addShutdownHook(new Thread(()->JsonDBEngine.join()));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
+    }
 
         //"C:\\Users\\Ryan\\Documents\\KULIAH\\Java\\Praktikum\\JBus\\data\\buses.json";
         /*try {
@@ -99,94 +108,94 @@ public class JBus
         testCollect(numbers);*/
     }
 
-    public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page, int pagesize)
-    {
-        List<Bus> FirstList = buses;
-
-        List<Bus> list = new ArrayList<Bus>();
-        for(Bus bus : FirstList)
-        {
-            if(bus.departure.city.equals(departure)){
-                list.add(bus);
-            }
-        }
-        return Algorithm.paginate(list, page, pagesize, t -> true);
-    }
-
-    public static List<Bus> filterByPrice(List<Bus> buses, int min, int max)
-    {
-        List<Bus> FirstList = buses;
-
-        List<Bus> list = new ArrayList<Bus>();
-        for(Bus bus : FirstList)
-        {
-            if(bus.price.price >= min && bus.price.price <= max){
-                list.add(bus);
-            }
-        }
-        return list;
-    }
-    public static Bus filterBusId(List<Bus> buses, int id)
-    {
-        List<Bus> FirstList = buses;
-
-        for(Bus bus : FirstList)
-        {
-            if(bus.id == id){
-                return bus;
-            }
-        }
-        return null;
-    }
-
-    public static List<Bus> filterByDepartureAndArrival(List<Bus> buses, City departure, City arrival, int page, int pagesize)
-    {
-        List<Bus> FirstList = buses;
-        List<Bus> list = new ArrayList<Bus>();
-
-        for(Bus bus : FirstList)
-        {
-            if(bus.departure.city.equals(departure) && bus.arrival.city.equals(arrival)){
-                list.add(bus);
-            }
-        }
-        return Algorithm.paginate(list, page, pagesize, t->true);
-    }
-    private static void testExist(Integer[] t) {
-        int valueToCheck = 67;
-        boolean result3 = Algorithm.exists(t, valueToCheck);
-        if (result3) {
-            System.out.println(valueToCheck + " exist in the array.");
-        } else {
-            System.out.println(valueToCheck + " doesn't exists in the array.");
-        }
-    }
-    public static void testCount(Integer[] t) {
-        int valueToCount = 18;
-        int result = Algorithm.count(t, valueToCount);
-        System.out.println("Number " + valueToCount + " appears " + result + " times");
-    }
-    public static void testFind(Integer[] t) {
-        Integer valueToFind = 69;
-        Integer result2 = Algorithm.find(t, valueToFind);
-        System.out.print("Finding " + valueToFind + " inside the array : ");
-        if (result2 != null) {
-            System.out.println("Found!" + result2);
-        } else {
-            System.out.println("Not Found");
-        }
-    }
-    private static void testCollect(Integer[] t) {
-        Predicate<Integer> below = (val)->val<=22;
-        Predicate<Integer> above = (val)->val>43;
-
-        List<Integer> integerBelow = Algorithm.collect(t, below);
-        List<Integer> integerAbove = Algorithm.collect(t, above);
-
-        System.out.println("Below 22");
-        System.out.println(integerBelow);
-        System.out.println("Above 43");
-        System.out.println(integerAbove);
+//    public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page, int pagesize)
+//    {
+//        List<Bus> FirstList = buses;
+//
+//        List<Bus> list = new ArrayList<Bus>();
+//        for(Bus bus : FirstList)
+//        {
+//            if(bus.departure.city.equals(departure)){
+//                list.add(bus);
+//            }
+//        }
+//        return Algorithm.paginate(list, page, pagesize, t -> true);
+//    }
+//
+//    public static List<Bus> filterByPrice(List<Bus> buses, int min, int max)
+//    {
+//        List<Bus> FirstList = buses;
+//
+//        List<Bus> list = new ArrayList<Bus>();
+//        for(Bus bus : FirstList)
+//        {
+//            if(bus.price.price >= min && bus.price.price <= max){
+//                list.add(bus);
+//            }
+//        }
+//        return list;
+//    }
+//    public static Bus filterBusId(List<Bus> buses, int id)
+//    {
+//        List<Bus> FirstList = buses;
+//
+//        for(Bus bus : FirstList)
+//        {
+//            if(bus.id == id){
+//                return bus;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public static List<Bus> filterByDepartureAndArrival(List<Bus> buses, City departure, City arrival, int page, int pagesize)
+//    {
+//        List<Bus> FirstList = buses;
+//        List<Bus> list = new ArrayList<Bus>();
+//
+//        for(Bus bus : FirstList)
+//        {
+//            if(bus.departure.city.equals(departure) && bus.arrival.city.equals(arrival)){
+//                list.add(bus);
+//            }
+//        }
+//        return Algorithm.paginate(list, page, pagesize, t->true);
+//    }
+//    private static void testExist(Integer[] t) {
+//        int valueToCheck = 67;
+//        boolean result3 = Algorithm.exists(t, valueToCheck);
+//        if (result3) {
+//            System.out.println(valueToCheck + " exist in the array.");
+//        } else {
+//            System.out.println(valueToCheck + " doesn't exists in the array.");
+//        }
+//    }
+//    public static void testCount(Integer[] t) {
+//        int valueToCount = 18;
+//        int result = Algorithm.count(t, valueToCount);
+//        System.out.println("Number " + valueToCount + " appears " + result + " times");
+//    }
+//    public static void testFind(Integer[] t) {
+//        Integer valueToFind = 69;
+//        Integer result2 = Algorithm.find(t, valueToFind);
+//        System.out.print("Finding " + valueToFind + " inside the array : ");
+//        if (result2 != null) {
+//            System.out.println("Found!" + result2);
+//        } else {
+//            System.out.println("Not Found");
+//        }
+//    }
+//    private static void testCollect(Integer[] t) {
+//        Predicate<Integer> below = (val)->val<=22;
+//        Predicate<Integer> above = (val)->val>43;
+//
+//        List<Integer> integerBelow = Algorithm.collect(t, below);
+//        List<Integer> integerAbove = Algorithm.collect(t, above);
+//
+//        System.out.println("Below 22");
+//        System.out.println(integerBelow);
+//        System.out.println("Above 43");
+//        System.out.println(integerAbove);
 
         /*Bus bus1 = createBus();
         Bus bus2 = createBus();
@@ -286,7 +295,7 @@ public class JBus
         System.out.println(testBus.price.price);
         System.out.println(testBus.capacity);
         */
-    }
+    //}
 
     /*public static Bus createBus() {
         Price price = new Price(750000, 5);
@@ -373,4 +382,3 @@ public class JBus
         return totalsemua;
     }
     */
-}

@@ -17,12 +17,27 @@ import java.util.List;
 public class PaymentController implements BasicGetController<Payment>{
 
     @JsonAutowired(value = Payment.class, filepath = "src\\main\\java\\com\\RyanSafaTjendanaJBusAF\\json\\payment.json")
+    /**
+     * Mendapatkan JsonTable yang terkait dengan kontroler ini.
+     *
+     * @return JsonTable yang berisi data Payment.
+     */
     public static JsonTable<Payment> paymentTable;
+
     @Override
     public JsonTable<Payment> getJsonTable() {
         return paymentTable;
     }
-
+    /**
+     * Membuat booking untuk pembelian tiket bus.
+     *
+     * @param buyerId        ID pembeli.
+     * @param renterId       ID penyewa.
+     * @param busId          ID bus.
+     * @param busSeats       Daftar nomor kursi yang dibeli.
+     * @param departureDate  Tanggal keberangkatan.
+     * @return Respon berisi informasi tentang berhasil atau tidaknya pembuatan booking.
+     */
     @RequestMapping(value="/makeBooking", method = RequestMethod.POST)
     public BaseResponse<Payment> makeBooking(
             @RequestParam int buyerId,
@@ -57,6 +72,12 @@ public class PaymentController implements BasicGetController<Payment>{
         return new BaseResponse<>(true, "Berhasil membuat booking", payment);
     }
 
+    /**
+     * Menerima pembayaran untuk booking tertentu.
+     *
+     * @param id ID pembayaran.
+     * @return Respon berisi informasi tentang berhasil atau tidaknya penerimaan pembayaran.
+     */
     @RequestMapping(value="/{id}/accept", method = RequestMethod.POST)
     public BaseResponse<Payment> accept(@PathVariable int id)
     {
@@ -78,6 +99,12 @@ public class PaymentController implements BasicGetController<Payment>{
         }
     }
 
+    /**
+     * Membatalkan pembayaran untuk booking tertentu.
+     *
+     * @param id ID pembayaran.
+     * @return Respon berisi informasi tentang berhasil atau tidaknya pembatalan pembayaran.
+     */
     @RequestMapping(value="/{id}/cancel", method = RequestMethod.POST)
     public BaseResponse<Payment> cancel(@PathVariable int id)
     {
@@ -91,6 +118,12 @@ public class PaymentController implements BasicGetController<Payment>{
         }
     }
 
+    /**
+     * Mendapatkan daftar kursi yang telah dibeli oleh pembeli tertentu.
+     *
+     * @param buyerId ID pembeli.
+     * @return Respon berisi daftar pembayaran (kursi yang dibeli) oleh pembeli tersebut.
+     */
     @GetMapping("/getMySeat")
     public BaseResponse<List<Payment>> getMySeat(@RequestParam int buyerId){
         try{
@@ -101,6 +134,12 @@ public class PaymentController implements BasicGetController<Payment>{
         }
     }
 
+    /**
+     * Menghapus data pembayaran tertentu berdasarkan ID.
+     *
+     * @param id ID pembayaran.
+     * @return Respon berisi informasi tentang berhasil atau tidaknya penghapusan pembayaran.
+     */
     @PostMapping("/deletePayment")
     public BaseResponse<Payment> deletePayment(@RequestParam int id){
         try{

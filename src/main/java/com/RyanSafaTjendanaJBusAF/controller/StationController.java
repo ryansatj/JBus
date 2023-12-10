@@ -9,16 +9,32 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Ryan Safa
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/station")
 public class StationController implements BasicGetController<Station> {
     public static @JsonAutowired(value = Station.class, filepath = "src\\main\\java\\com\\RyanSafaTjendanaJBusAF\\json\\station.json") JsonTable<Station> stationTable;
+    /**
+     * Mendapatkan JsonTable yang terkait dengan kontroler ini.
+     *
+     * @return JsonTable yang berisi data Station.
+     */
     @Override
     public JsonTable<Station> getJsonTable() {
         return stationTable;
     }
 
-    //Add new Station
+    /**
+     * Membuat stasiun baru.
+     *
+     * @param stationName Nama stasiun.
+     * @param city        Nama kota.
+     * @param address     Alamat stasiun.
+     * @return Respon berisi informasi tentang berhasil atau tidaknya pembuatan stasiun baru.
+     */
     @PostMapping("/create")
     public BaseResponse<Station> createStation(
             @RequestParam String stationName,
@@ -50,6 +66,11 @@ public class StationController implements BasicGetController<Station> {
             return new BaseResponse<>(false, "An error occurred while adding the station", null);
         }
     }
+    /**
+     * Mendapatkan daftar semua stasiun.
+     *
+     * @return Daftar stasiun yang tersedia.
+     */
     @GetMapping("/getAll")
     public List<Station> getAllStation()
     { return getJsonTable();}

@@ -2,15 +2,48 @@ package com.RyanSafaTjendanaJBusAF;
 
 import com.RyanSafaTjendanaJBusAF.dbjson.Serializable;
 
+/**
+ * Class untuk merepresentasikan objek Voucher dalam sistem.
+ * Extends class Serializable untuk mendukung serialisasi objek.
+ *
+ * @see Serializable
+ * @author Ryan Safa
+ * @version 1.0
+ */
 public class Voucher extends Serializable
 {
+    /**
+     * Nama voucher
+     */
     public String name;
     private boolean used;
+    /**
+     * Nilai minimum pembelian untuk penggunaan voucher
+     */
     public double minimum;
+    /**
+     * Nilai potongan atau pengembalian uang dari voucher
+     */
     public double cut;
+    /**
+     * Kode voucher
+     */
     public int code;
+    /**
+     * Jenis voucher (DISCOUNT atau REBATE)
+     */
     public Type type;
-    
+
+    /**
+     * Konstruktor untuk objek Voucher dengan ID, nama, kode, jenis, nilai minimum, dan nilai potongan.
+     *
+     * @param id      ID voucher
+     * @param name    nama voucher
+     * @param code    kode voucher
+     * @param type    jenis voucher (DISCOUNT atau REBATE)
+     * @param minimum nilai minimum pembelian untuk penggunaan voucher
+     * @param cut     nilai potongan atau pengembalian uang dari voucher
+     */
     public Voucher(int id, String name, int code, Type type, double minimum, double cut)
     {
         super();
@@ -57,12 +90,4 @@ public class Voucher extends Serializable
         
         return price.price;
     }
-    
-    public Object write(){
-        return null;
-    }
-    public boolean read(String string){
-        return false;
-    }
-    
 }

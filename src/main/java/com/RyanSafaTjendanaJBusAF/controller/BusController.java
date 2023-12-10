@@ -10,17 +10,40 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * @author Ryan Safa
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/bus")
 public class BusController implements BasicGetController<Bus> {
 
     @JsonAutowired(value = Bus.class, filepath = "src\\main\\java\\com\\RyanSafaTjendanaJBusAF\\json\\bus.json")
     public static JsonTable<Bus> busTable;
+
+    /**
+     * Mendapatkan JsonTable yang terkait dengan kontroler ini.
+     *
+     * @return JsonTable yang berisi data Bus.
+     */
     @Override
     public JsonTable<Bus> getJsonTable() {
         return busTable;
     }
 
+    /**
+     * Membuat objek Bus baru.
+     *
+     * @param accountId          ID akun pemilik bus.
+     * @param name               Nama bus.
+     * @param capacity           Kapasitas bus.
+     * @param facilities         Fasilitas yang dimiliki bus.
+     * @param busType            Jenis bus (BusType).
+     * @param price              Harga tiket bus.
+     * @param stationDepartureId ID stasiun keberangkatan.
+     * @param stationArrivalId   ID stasiun kedatangan.
+     * @return Respon berisi informasi tentang berhasil atau tidaknya pembuatan bus.
+     */
     @PostMapping("/create")
     public BaseResponse<Bus> create
             (
@@ -47,6 +70,13 @@ public class BusController implements BasicGetController<Bus> {
         return new BaseResponse<>(true, "Bus Berhasil dibuat", bus);
     }
 
+    /**
+     * Menambahkan jadwal keberangkatan untuk bus tertentu.
+     *
+     * @param busId ID bus.
+     * @param time  Waktu keberangkatan baru (dalam format String).
+     * @return Respon berisi informasi tentang berhasil atau tidaknya penambahan jadwal.
+     */
     @PostMapping("/addSchedule")
     public BaseResponse<Bus> addSchedule(
             @RequestParam int busId,
@@ -60,14 +90,32 @@ public class BusController implements BasicGetController<Bus> {
             return new BaseResponse<>(false, "Schedule gagal dibuat", null);
         }
     }
+
+    /**
+     * Mendapatkan daftar bus yang dimiliki oleh akun dengan ID tertentu.
+     *
+     * @param accountId ID akun pemilik bus.
+     * @return Respon berisi daftar bus yang dimiliki oleh akun tersebut.
+     */
     @GetMapping("/getMyBus")
     public BaseResponse<List<Bus>> getMyBus(@RequestParam int accountId) {
         return new BaseResponse<>(true, "Berhasil", Algorithm.<Bus>collect(getJsonTable(), b->b.accountId==accountId ));}
 
+    /**
+     * Mendapatkan daftar semua bus yang tersedia.
+     *
+     * @return Respon berisi daftar semua bus yang tersedia.
+     */
     @GetMapping("/getAllBus")
     public BaseResponse<List<Bus>> getAllBus()
     {return new BaseResponse<>(true, "berhasil", getJsonTable());}
 
+    /**
+     * Mendapatkan informasi harga tiket untuk bus dengan ID tertentu.
+     *
+     * @param busId ID bus.
+     * @return Respon berisi informasi harga tiket untuk bus tersebut.
+     */
     @GetMapping("/getBusPrice")
     public BaseResponse<Bus> getBusPrice(@RequestParam int busId){
         return new BaseResponse<>(true, "", Algorithm.<Bus>find(getJsonTable(), t->t.id == busId));
